@@ -6,7 +6,7 @@ import img4 from "../../../src/assets/caring/img-box-04.jpg";
 
 const Caring = () => {
   return (
-    <div className="grid grid-cols-4 max-w-7xl mx-auto">
+    <div className="grid lg:grid-cols-4 max-w-7xl mx-auto">
       {/* Card 1 */}
       <CareCard
         image={img1}

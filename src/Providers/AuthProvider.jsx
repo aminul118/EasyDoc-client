@@ -44,10 +44,15 @@ const AuthProvider = ({ children }) => {
   };
 
   // Update user profile
-  const updateUserProfile = (name, photo) => {
+  // const updateUserProfile = (name, photo) => {
+  //   return updateProfile(auth.currentUser, {
+  //     displayName: name,
+  //     photoURL: photo,
+  //   });
+  // };
+  const updateUserProfile = (name) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
-      photoURL: photo,
     });
   };
 
