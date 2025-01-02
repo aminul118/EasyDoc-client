@@ -1,16 +1,17 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import logo from "/logo.png";
 
 const Navbar = () => {
   const navLinks = (
     <>
       <li>
-        <NavLink to="/">Home</NavLink>{" "}
+        <NavLink to="/">Home</NavLink>
       </li>
     </>
   );
   return (
-    <header>
-      <div className="navbar bg-base-100">
+    <header className="fixed w-full bg-white z-50">
+      <div className="navbar w-11/12 mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -36,7 +37,14 @@ const Navbar = () => {
               {navLinks}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <Link to="/">
+            <div className="flex items-center gap-2">
+              <img className="w-12" src={logo} alt="" />{" "}
+              <p className="text-2xl font-bold card-normal text-blue-500">
+                <span className="text-red-600">Easy</span>Doc
+              </p>
+            </div>
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navLinks}</ul>
