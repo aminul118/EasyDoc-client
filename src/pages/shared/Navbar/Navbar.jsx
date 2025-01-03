@@ -1,12 +1,66 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "/logo.png";
+import useAuth from "../../../hooks/useAuth";
 
 const Navbar = () => {
+  const { user } = useAuth();
   const navLinks = (
     <>
       <li>
         <NavLink to="/">Home</NavLink>
       </li>
+      <li>
+        <NavLink to="/doctor">Doctor</NavLink>
+      </li>
+      <li>
+        <NavLink to="/contact">Contact</NavLink>
+      </li>
+    </>
+  );
+  const adminLinks = (
+    <>
+      <li>
+        <a className="justify-between">Profile</a>
+      </li>
+      <li>
+        <a>Settings</a>
+      </li>
+      <li>
+        <a>Logout</a>
+      </li>
+    </>
+  );
+
+  const userNameFirstLetter = user?.displayName.slice(0, 1);
+  // console.log(userNameFirstLetter);
+
+  const userProfile = (
+    <>
+      <div className="flex-none gap-2">
+        <div className="dropdown dropdown-end">
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn btn-ghost btn-circle avatar"
+          >
+            {user?.photoURL ? (
+              <div className="w-10 rounded-full">
+                <img alt="Tailwind CSS Navbar component" src={user?.PhotoURL} />
+              </div>
+            ) : (
+              <p className="text-3xl text-blue-500 w-10 rounded-full border bg-slate-200">
+                {userNameFirstLetter}
+              </p>
+            )}
+          </div>
+          <ul
+            tabIndex={0}
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+          >
+            {adminLinks}
+          </ul>
+        </div>
+      </div>
     </>
   );
   return (
@@ -50,7 +104,16 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{navLinks}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          {user?.email ? (
+            <>{userProfile}</>
+          ) : (
+            <Link
+              to="/register"
+              className="btn bg-blue-600 text-white hover:bg-red-700"
+            >
+              Register
+            </Link>
+          )}
         </div>
       </div>
     </header>

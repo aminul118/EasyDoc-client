@@ -11,7 +11,7 @@ const HeroSlider = ({
   return (
     <div
       style={{ backgroundImage: `url(${backgroundImage})` }}
-      className=" lg:h-[600px] xl:h-screen bg-cover bg-center flex items-center "
+      className=" lg:h-[600px] xl:h-[calc(100vh-64px)] bg-cover bg-center flex items-center "
     >
       <div className="w-full py-6">
         <div className="w-10/12 mx-auto space-y-4">
