@@ -20,6 +20,8 @@ body {
   background-color: #0c2348;
 }
 
-.inActive {
-  padding: 8px 16px;
+
+.react-time-picker__wrapper {
+  border: none !important;
 }
+

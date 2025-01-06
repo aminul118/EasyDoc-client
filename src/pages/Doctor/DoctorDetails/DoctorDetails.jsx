@@ -8,15 +8,17 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import useBookedSlots from "../../../hooks/useBookedSlots";
+import { format } from "date-fns";
 
 const DoctorDetails = () => {
+  // Hooks and Contexts
   const { id } = useParams();
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
   const [, refetch] = useBookedSlots();
 
-  // Hooks should always be called first!
+  // Fetch Doctor Details
   const { data, isLoading, error } = useQuery({
     queryKey: [id, "doctorDetails"],
     queryFn: async () => {
@@ -25,6 +27,7 @@ const DoctorDetails = () => {
     },
   });
 
+  // Form Hook
   const {
     register,
     handleSubmit,
@@ -32,68 +35,83 @@ const DoctorDetails = () => {
     formState: { errors },
   } = useForm();
 
+  // Loading and Error States
   if (isLoading) return <LoadingSpinner />;
   if (error) return <p>Error loading doctor details</p>;
   if (!data) return <p>No doctor details found</p>;
 
+  // Destructure Data
   const {
     doctorName,
     specialization,
     image,
     experience,
     location,
-    availableSlots,
+    date,
+    details,
+    time,
   } = data;
+  const dateFormat = format(new Date(date), "dd MMMM, yyyy");
 
-  const onSubmit = async (data) => {
-    data.email = user.email;
-    data.doctorId = id;
-    await axiosSecure.post("/appointments", data);
-    reset();
-    refetch();
+  // Form Submission Handler
+  const onSubmit = async (formData) => {
+    formData.email = user.email;
+    formData.doctorId = id;
 
-    await Swal.fire({
-      title: "Good job!",
-      text: `Appointment booked for ${data.patientName} `,
-      icon: "success",
-    });
+    try {
+      await axiosSecure.post("/appointments", formData);
+      reset();
+      refetch();
+      Swal.fire({
+        title: "Good job!",
+        text: `Appointment booked for ${formData.patientName}`,
+        icon: "success",
+      });
+    } catch (error) {
+      console.error("Error booking appointment:", error);
+    }
   };
 
+  // Component Render
   return (
-    <section className="min-h-[calc(100vh-220px)] flex items-center justify-center container mx-auto">
+    <section className="min-h-[calc(100vh-220px)] flex items-center justify-center mx-auto ">
       <Helmet>
         <title>{doctorName} Details</title>
       </Helmet>
-      <div className="w-full max-w-5xl bg-base-200 shadow-lg rounded-lg overflow-hidden p-6">
-        <div className="flex flex-col md:flex-row gap-6 items-center">
+      <div className="w-full rounded-lg overflow-hidden p-6 bg-base-200 container mx-auto my-24">
+        <div className="flex flex-col gap-6 items-center">
           {/* Doctor Image */}
-          <figure className="w-full md:w-1/2">
+          <figure className="w-full ">
             <img
-              className="w-full bg-slate-500 object-cover rounded-lg"
+              className="w-64 2xl:w-96 bg-slate-500 object-cover rounded-lg"
               src={image}
               alt={doctorName}
             />
           </figure>
 
           {/* Doctor Details */}
-          <div className="w-full md:w-1/2">
+          <div className="w-full ">
             <h2 className="text-2xl font-bold mb-2">{doctorName}</h2>
             <p className="text-gray-600 mb-1">
               Specialization: {specialization}
             </p>
             <p className="text-gray-600 mb-1">Experience: {experience} years</p>
             <p className="text-gray-600 mb-1">Location: {location}</p>
-            <p className="text-gray-600 mb-4">
-              Available Slots: {availableSlots?.join(", ") || "N/A"}
-            </p>
+            <p className="container ">About: {details}</p>
 
             <div className="divider"></div>
             <h3 className="text-xl font-semibold mb-2">Book an Appointment</h3>
 
+            {/* Appointment Info */}
+            <div className="space-y-2">
+              <p>Date: {dateFormat}</p>
+              <p>Time: {time}</p>
+            </div>
+
             {/* Booking Form */}
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className="flex flex-col gap-4"
+              className="flex flex-col gap-4 max-w-lg mt-2"
             >
               {/* Patient Name */}
               <div>
@@ -129,28 +147,6 @@ const DoctorDetails = () => {
                 {errors.contactNumber && (
                   <p className="text-red-500 text-sm mt-1">
                     {errors.contactNumber.message}
-                  </p>
-                )}
-              </div>
-
-              {/* Select Slot */}
-              <div>
-                <select
-                  {...register("selectedSlot", {
-                    required: "Please select a time slot",
-                  })}
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
-                >
-                  <option value="">Select a Slot</option>
-                  {availableSlots?.map((slot, index) => (
-                    <option key={index} value={slot}>
-                      {slot}
-                    </option>
-                  ))}
-                </select>
-                {errors.selectedSlot && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.selectedSlot.message}
                   </p>
                 )}
               </div>

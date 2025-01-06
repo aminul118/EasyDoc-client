@@ -10,22 +10,22 @@ const Dashboard = () => {
         </div>
         <ul className="flex flex-col mt-4 gap-4 ">
           <li>
-            <NavLink to="/dashboard/appoinment" className="btn">
+            <NavLink to="/dashboard/appoinment" className="px-4 w-full btn">
               My Appointments
             </NavLink>
           </li>
           <li>
-            <NavLink to="/dashboard/profile" className="px-4">
-              Profile
+            <NavLink to="/dashboard/addDoctor" className="px-4 w-full btn">
+              Add Doctor
             </NavLink>
           </li>
           <li>
-            <NavLink to="/dashboard/settings" className="px-4">
+            <NavLink to="/dashboard/settings" className="px-4 btn w-full">
               Settings
             </NavLink>
           </li>
           <li>
-            <NavLink to="/dashboard/logout" className="px-4">
+            <NavLink to="/dashboard/logout" className="px-4 btn w-full">
               Logout
             </NavLink>
           </li>

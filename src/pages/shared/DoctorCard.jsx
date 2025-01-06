@@ -9,9 +9,13 @@ const DoctorCard = ({ doctor }) => {
   console.log(doctor);
   return (
     <Link to={`/doctor/${_id}`}>
-      <div className="card bg-base-200   rounded-none">
+      <div className="card bg-base-200 h-full rounded-none">
         <figure className="bg-slate-400">
-          <img src={image} alt="Shoes" />
+          <img
+            className="w-full h-64 object-cover 2xl:h-96"
+            src={image}
+            alt="Shoes"
+          />
         </figure>
         <div className="card-body">
           <h2 className="card-title">{doctorName}</h2>

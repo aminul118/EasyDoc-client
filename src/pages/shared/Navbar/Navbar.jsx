@@ -6,7 +6,7 @@ import useBookedSlots from "../../../hooks/useBookedSlots";
 const Navbar = () => {
   const { user } = useAuth();
   const [appointments] = useBookedSlots();
-  console.log(appointments);
+  // console.log(appointments);
   const navLinks = (
     <>
       <li>

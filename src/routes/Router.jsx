@@ -9,6 +9,7 @@ import Doctor from "../pages/Doctor/Doctor/Doctor";
 import DoctorDetails from "../pages/Doctor/DoctorDetails/DoctorDetails";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Appoinments from "../pages/Dashboard/Appoinments/Appoinments";
+import AddDoctor from "../pages/Dashboard/AddDoctor/AddDoctor";
 
 const Router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const Router = createBrowserRouter([
       {
         path: "appoinment",
         element: <Appoinments />,
+      },
+      {
+        path: "addDoctor",
+        element: <AddDoctor />,
       },
     ],
   },
