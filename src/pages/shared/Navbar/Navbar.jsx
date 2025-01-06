@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "/logo.png";
 import useAuth from "../../../hooks/useAuth";
-
+import { CiBookmarkCheck } from "react-icons/ci";
 const Navbar = () => {
   const { user } = useAuth();
   const navLinks = (
@@ -15,16 +15,22 @@ const Navbar = () => {
       <li>
         <NavLink to="/contact">Contact</NavLink>
       </li>
+      <li>
+        <button>
+          <div className="indicator">
+            <CiBookmarkCheck className="text-xl mt-1" />
+            <span className="badge badge-sm indicator-item">+8</span>
+          </div>
+        </button>
+      </li>
     </>
   );
   const adminLinks = (
     <>
       <li>
-        <a className="justify-between">Profile</a>
+        <NavLink to="/dashboard">Dashboard</NavLink>
       </li>
-      <li>
-        <a>Settings</a>
-      </li>
+      <li></li>
       <li>
         <a>Logout</a>
       </li>
@@ -100,6 +106,7 @@ const Navbar = () => {
             </div>
           </Link>
         </div>
+
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navLinks}</ul>
         </div>

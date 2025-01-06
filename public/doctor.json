@@ -1,0 +1,88 @@
+[
+  {
+    "id": 1,
+    "doctorName": "Dr. Sarah Johnson",
+    "specialization": "Cardiologist",
+    "experience": "10 years",
+    "availableSlots": [
+      "2025-01-05 10:00 AM",
+      "2025-01-05 02:00 PM",
+      "2025-01-06 11:00 AM"
+    ],
+    "contact": {
+      "phone": "+1-234-567-8901",
+      "email": "sarah.johnson@example.com"
+    },
+    "location": "Heart Care Clinic, Downtown",
+    "rating": 4.8,
+    "image": "https://i.ibb.co.com/pdvkBZp/fatema-cv-photo.png"
+  },
+  {
+    "doctorName": "Dr. Michael Brown",
+    "specialization": "Dermatologist",
+    "experience": "7 years",
+    "availableSlots": [
+      "2025-01-05 09:30 AM",
+      "2025-01-06 01:00 PM",
+      "2025-01-07 03:30 PM"
+    ],
+    "contact": {
+      "phone": "+1-345-678-9012",
+      "email": "michael.brown@example.com"
+    },
+    "location": "Skin Wellness Center, Uptown",
+    "rating": 4.6,
+    "image": "https://i.ibb.co.com/pdvkBZp/fatema-cv-photo.png"
+  },
+  {
+    "doctorName": "Dr. Emily Davis",
+    "specialization": "Pediatrician",
+    "experience": "12 years",
+    "availableSlots": [
+      "2025-01-05 11:00 AM",
+      "2025-01-06 09:00 AM",
+      "2025-01-07 02:00 PM"
+    ],
+    "contact": {
+      "phone": "+1-456-789-0123",
+      "email": "emily.davis@example.com"
+    },
+    "location": "Children's Health Clinic, Suburb",
+    "rating": 4.9,
+    "image": "https://i.ibb.co.com/pdvkBZp/fatema-cv-photo.png"
+  },
+  {
+    "doctorName": "Dr. John Smith",
+    "specialization": "Orthopedic Surgeon",
+    "experience": "15 years",
+    "availableSlots": [
+      "2025-01-06 10:00 AM",
+      "2025-01-07 01:30 PM",
+      "2025-01-08 11:00 AM"
+    ],
+    "contact": {
+      "phone": "+1-567-890-1234",
+      "email": "john.smith@example.com"
+    },
+    "location": "Bone & Joint Center, City Center",
+    "rating": 4.7,
+    "image": "https://i.ibb.co.com/pdvkBZp/fatema-cv-photo.png"
+  },
+  {
+    "doctorName": "Dr. Olivia Martinez",
+    "specialization": "Neurologist",
+    "experience": "8 years",
+    "availableSlots": [
+      "2025-01-06 11:30 AM",
+      "2025-01-07 10:00 AM",
+      "2025-01-08 02:30 PM"
+    ],
+    "contact": {
+      "phone": "+1-678-901-2345",
+      "email": "olivia.martinez@example.com"
+    },
+    "location": "Neuro Care Hospital, Downtown",
+    "rating": 4.8,
+    "image": "https://i.ibb.co.com/pdvkBZp/fatema-cv-photo.png"
+  }
+]
