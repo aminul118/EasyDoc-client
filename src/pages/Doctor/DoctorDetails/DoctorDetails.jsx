@@ -7,12 +7,14 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
+import useBookedSlots from "../../../hooks/useBookedSlots";
 
 const DoctorDetails = () => {
   const { id } = useParams();
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
+  const [, refetch] = useBookedSlots();
 
   // Hooks should always be called first!
   const { data, isLoading, error } = useQuery({
@@ -48,6 +50,8 @@ const DoctorDetails = () => {
     data.doctorId = id;
     await axiosSecure.post("/appointments", data);
     reset();
+    refetch();
+
     await Swal.fire({
       title: "Good job!",
       text: `Appointment booked for ${data.patientName} `,

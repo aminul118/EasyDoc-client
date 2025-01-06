@@ -4,7 +4,7 @@ import lottie from "../assets/lottie/square-round.json";
 const LoadingSpinner = () => {
   return (
     <div className="min-h-[calc(100vh-220px)] flex items-center justify-center">
-      <Lottie animationData={lottie} />
+      <Lottie animationData={lottie} className="w-44" />
     </div>
   );
 };

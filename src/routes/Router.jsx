@@ -7,6 +7,8 @@ import Home from "../pages/Home/Home/Home";
 import Contact from "../pages/Contact/Contact";
 import Doctor from "../pages/Doctor/Doctor/Doctor";
 import DoctorDetails from "../pages/Doctor/DoctorDetails/DoctorDetails";
+import DashboardLayout from "../layouts/DashboardLayout";
+import Appoinments from "../pages/Dashboard/Appoinments/Appoinments";
 
 const Router = createBrowserRouter([
   {
@@ -36,6 +38,16 @@ const Router = createBrowserRouter([
       {
         path: "register",
         element: <Register />,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: "appoinment",
+        element: <Appoinments />,
       },
     ],
   },

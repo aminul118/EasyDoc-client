@@ -2,8 +2,11 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "/logo.png";
 import useAuth from "../../../hooks/useAuth";
 import { CiBookmarkCheck } from "react-icons/ci";
+import useBookedSlots from "../../../hooks/useBookedSlots";
 const Navbar = () => {
   const { user } = useAuth();
+  const [appointments] = useBookedSlots();
+  console.log(appointments);
   const navLinks = (
     <>
       <li>
@@ -16,12 +19,14 @@ const Navbar = () => {
         <NavLink to="/contact">Contact</NavLink>
       </li>
       <li>
-        <button>
+        <Link to="/dashboard/appoinment">
           <div className="indicator">
             <CiBookmarkCheck className="text-xl mt-1" />
-            <span className="badge badge-sm indicator-item">+8</span>
+            <span className="badge badge-sm indicator-item">
+              +{appointments.length}
+            </span>
           </div>
-        </button>
+        </Link>
       </li>
     </>
   );

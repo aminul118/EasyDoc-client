@@ -9,3 +9,17 @@ html {
 body {
   font-family: "Poppins", serif;
 }
+
+.active {
+  background-color: #3b82f6;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 12px;
+}
+.active:hover {
+  background-color: #0c2348;
+}
+
+.inActive {
+  padding: 8px 16px;
+}
