@@ -10,13 +10,13 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-
-// import axios from "axios";
 import app from "../firebase/firebase.config";
+import useAxiosPublic from "../hooks/useAxiosPublic";
 
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
+  const axiosPublic = useAxiosPublic();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const auth = getAuth(app);
@@ -43,13 +43,6 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  // Update user profile
-  // const updateUserProfile = (name, photo) => {
-  //   return updateProfile(auth.currentUser, {
-  //     displayName: name,
-  //     photoURL: photo,
-  //   });
-  // };
   const updateUserProfile = (name) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
@@ -60,46 +53,29 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
-        // console.log("Current User:", currentUser);
+        console.log("Current User:", currentUser);
         setUser(currentUser);
         setLoading(false);
-
-        // if (currentUser) {
-        //   const user = currentUser.email;
-        //   axios
-        //     .post(
-        //       `${import.meta.env.VITE_BASE_URL}/jwt`,
-        //       { email: user },
-        //       {
-        //         withCredentials: true,
-        //       }
-        //     )
-        //     .then((res) => {
-        //       console.log("JWT token:", res.data);
-        //       setLoading(false);
-        //     })
-        //     .catch((err) => {
-        //       // console.log("JWT ERROR:", err);
-        //     });
-        // }
-        console.log("User", currentUser);
+        const userInfo = { email: currentUser.email };
+        if (currentUser) {
+          // Get token and store to local stroage
+          axiosPublic.post("/jwt", userInfo).then((res) => {
+            if (res.data.token) {
+              const token = res.data.token;
+              localStorage.setItem("token", token);
+            }
+          });
+        }
       } else {
-        // axios
-        //   .post(
-        //     `${import.meta.env.VITE_BASE_URL}/logout`,
-        //     {},
-        //     { withCredentials: true }
-        //   )
-        //   .then((res) => {
-        //     console.log("Log out", res.data);
-        //   });
+        //
         console.log("User signed out");
+        localStorage.removeItem("token");
         setUser(null);
         setLoading(false);
       }
     });
     return () => unsubscribe();
-  }, []);
+  }, [auth, axiosPublic]);
 
   const authInfo = {
     createUser,

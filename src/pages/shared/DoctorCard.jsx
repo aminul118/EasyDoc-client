@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const DoctorCard = ({ doctor }) => {
   const { doctorName, specialization, image, experience, location, _id } =
     doctor;
-  console.log(doctor);
+  // console.log(doctor);
   return (
     <Link to={`/doctor/${_id}`}>
       <div className="card bg-base-200 h-full rounded-none">

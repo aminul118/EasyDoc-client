@@ -10,6 +10,8 @@ import DoctorDetails from "../pages/Doctor/DoctorDetails/DoctorDetails";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Appoinments from "../pages/Dashboard/Appoinments/Appoinments";
 import AddDoctor from "../pages/Dashboard/AddDoctor/AddDoctor";
+import ManageDoctor from "../pages/Dashboard/ManageUsers/ManageUsers";
+import PrivateRoute from "./PrivateRoute";
 
 const Router = createBrowserRouter([
   {
@@ -44,7 +46,11 @@ const Router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "appoinment",
@@ -53,6 +59,10 @@ const Router = createBrowserRouter([
       {
         path: "addDoctor",
         element: <AddDoctor />,
+      },
+      {
+        path: "manageDoctor",
+        element: <ManageDoctor />,
       },
     ],
   },

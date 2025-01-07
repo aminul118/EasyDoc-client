@@ -18,7 +18,7 @@ const Doctor = () => {
       </Helmet>
 
       <Container>
-        <div className="grid lg:grid-cols-3 gap-6 2xl:grid-cols-5">
+        <div className="grid lg:grid-cols-3 gap-6 2xl:grid-cols-6 py-12">
           {doctors?.map((doctor) => (
             <DoctorCard doctor={doctor} key={doctor._id} />
           ))}

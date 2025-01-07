@@ -6,9 +6,11 @@ import { Link, useNavigate } from "react-router-dom";
 import LoginLottie from "../../components/LoginLottie";
 import GoogleLogin from "../../components/GoogleLogin";
 import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Register = () => {
   const { createUser, updateUserProfile } = useAuth();
+  const axiosPublic = useAxiosPublic();
   const navigate = useNavigate();
   const {
     register,
@@ -20,9 +22,11 @@ const Register = () => {
   const onSubmit = (data) => {
     console.log(data);
     const { name, email, password } = data;
+    const newUser = { name, email };
     createUser(email, password)
       .then(() => {
         updateUserProfile(name);
+        axiosPublic.post("/users", newUser);
         reset();
         navigate("/login");
       })

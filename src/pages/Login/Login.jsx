@@ -1,6 +1,6 @@
 import { HiLockClosed } from "react-icons/hi";
 import { IoMail } from "react-icons/io5";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import LoginLottie from "../../components/LoginLottie";
@@ -11,6 +11,8 @@ import { toast } from "react-toastify";
 const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  console.log(location);
   const {
     register,
     handleSubmit,
@@ -24,7 +26,7 @@ const Login = () => {
       .then(() => {
         toast.success("Successfully Login");
         reset();
-        navigate("/");
+        navigate(location.state ? location.state : "/");
       })
       .catch((error) => {
         console.log("ERROR:", error);
