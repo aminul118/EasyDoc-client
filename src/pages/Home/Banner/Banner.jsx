@@ -29,8 +29,8 @@ const Banner = () => {
             heading1="Modern Medical"
             heading2="Technology"
             paragraph="Synergistically facilitate e-business users whereas web-enabled ROI. Objectively empower front-end potentialities before collaborative platforms. Appropriately formulate cross-platform partnerships without extensive "
-            link="/"
-            linkText="Learn More"
+            link="/doctor"
+            linkText="Book Appoinments"
             backgroundImage={banner1}
           />
         </SwiperSlide>
@@ -40,8 +40,8 @@ const Banner = () => {
             heading1="Modern Medical"
             heading2="Technology"
             paragraph="Synergistically facilitate e-business users whereas web-enabled ROI. Objectively empower front-end potentialities before collaborative platforms. Appropriately formulate cross-platform partnerships without extensive "
-            link="/"
-            linkText="Learn More"
+            link="/doctor"
+            linkText="Book Appoinments"
             backgroundImage={banner2}
           />
         </SwiperSlide>

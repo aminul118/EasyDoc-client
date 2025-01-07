@@ -12,6 +12,7 @@ import Appoinments from "../pages/Dashboard/Appoinments/Appoinments";
 import AddDoctor from "../pages/Dashboard/AddDoctor/AddDoctor";
 import ManageDoctor from "../pages/Dashboard/ManageUsers/ManageUsers";
 import PrivateRoute from "./PrivateRoute";
+import Profile from "../pages/Dashboard/Profile/Profile";
 
 const Router = createBrowserRouter([
   {
@@ -53,8 +54,16 @@ const Router = createBrowserRouter([
     ),
     children: [
       {
+        path: "",
+        element: <Appoinments />,
+      },
+      {
         path: "appoinment",
         element: <Appoinments />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
       },
       {
         path: "addDoctor",

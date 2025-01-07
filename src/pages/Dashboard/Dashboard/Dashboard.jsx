@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { FaHome } from "react-icons/fa";
+import { FaHome, FaUser } from "react-icons/fa";
 import { FaUserDoctor, FaBook, FaGear } from "react-icons/fa6";
 import { TbLogout } from "react-icons/tb";
 
@@ -52,6 +52,14 @@ const Dashboard = () => {
           )}
           <li className="divider"></li>
           {/* Shared */}
+          <li>
+            <NavLink
+              to="/dashboard/profile"
+              className="px-4 btn w-full justify-start"
+            >
+              <FaUser /> Profile
+            </NavLink>
+          </li>
           <li>
             <NavLink to="/doctor" className="px-4 btn w-full justify-start">
               <FaUserDoctor /> Doctor

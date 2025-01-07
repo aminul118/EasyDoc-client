@@ -9,7 +9,7 @@ import useAuth from "../../hooks/useAuth";
 import { toast } from "react-toastify";
 
 const Login = () => {
-  const { login } = useAuth();
+  const { login,  } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   console.log(location);
@@ -92,9 +92,11 @@ const Login = () => {
             <button className="w-full bg-blue-600 text-white   mb-4 hover:bg-blue-700 btn">
               Login
             </button>
+          </form>
+          <div className="w-full">
             {/* Google Login */}
             <GoogleLogin />
-          </form>
+          </div>
 
           {/* Sign Up Link */}
           <p className="mt-4 text-gray-500 text-center">

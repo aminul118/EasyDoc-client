@@ -1,16 +1,18 @@
 import { useQuery } from "react-query";
 import useAxiosPublic from "./useAxiosPublic";
 
-const useDoctors = () => {
+const useDoctors = (sort, search) => {
   const axiosPublic = useAxiosPublic();
   const {
     data: doctors = [],
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ["doctors"],
+    queryKey: ["doctors", sort, search],
     queryFn: async () => {
-      const res = await axiosPublic.get("/doctors");
+      const res = await axiosPublic.get(
+        `/doctors?sort=${sort}&search=${search}`
+      );
       return res.data;
     },
   });
