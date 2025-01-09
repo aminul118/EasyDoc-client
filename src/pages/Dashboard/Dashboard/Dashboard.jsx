@@ -1,15 +1,19 @@
 import { NavLink } from "react-router-dom";
 import { FaHome, FaUser } from "react-icons/fa";
-import { FaUserDoctor, FaBook, FaGear } from "react-icons/fa6";
+import { FaUserDoctor, FaBook, FaGear, FaAddressBook } from "react-icons/fa6";
 import { TbLogout } from "react-icons/tb";
 
 import useAuth from "../../../hooks/useAuth";
 import useAdmin from "../../../hooks/useAdmin";
+import LoadingSpinner from "../../../components/LoadingSpinner";
 
 const Dashboard = () => {
   const { logOut } = useAuth();
   const [isAdmin, isAdminLoading] = useAdmin();
-  console.log(isAdmin, isAdminLoading);
+  if (isAdminLoading) {
+    return <LoadingSpinner />;
+  }
+
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
@@ -26,6 +30,14 @@ const Dashboard = () => {
                   className="px-4 w-full btn justify-start"
                 >
                   <FaUserDoctor /> Add Doctor
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/dashboard/allDoctors"
+                  className="px-4 w-full btn justify-start"
+                >
+                  <FaAddressBook /> All Doctors
                 </NavLink>
               </li>
 

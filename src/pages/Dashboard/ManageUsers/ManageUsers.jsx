@@ -91,7 +91,7 @@ const ManageUsers = () => {
         <table className="table ">
           {/* head */}
           <thead>
-            <tr>
+            <tr className="text-xl bg-slate-100">
               <th>SI</th>
               <th>Name</th>
               <th>Email</th>

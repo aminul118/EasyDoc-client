@@ -8,13 +8,25 @@ import "react-time-picker/dist/TimePicker.css";
 import "react-clock/dist/Clock.css";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
-const AddDoctor = () => {
+import useDoctorId from "../../../hooks/useDoctorId";
+import { useParams } from "react-router-dom";
+const UpdateDoctor = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [value, onChange] = useState("12:00");
   const axiosSecure = useAxiosSecure();
-  const axiosPublic = useAxiosPublic();
   const { register, handleSubmit } = useForm();
+  const { id } = useParams();
+  const { doctor, isLoading, error,refetch } = useDoctorId(id);
+  const {
+    doctorName,
+    specialization,
+    phone,
+    email,
+    location,
+    details,
+    date,
+    time,
+  } = doctor;
 
   const imgbb = `https://api.imgbb.com/1/upload?key=${
     import.meta.env.VITE_IMG_BB_API
@@ -22,7 +34,7 @@ const AddDoctor = () => {
 
   const onSubmit = async (data) => {
     const imageFile = { image: data.image[0] };
-    const imgData = await axiosPublic.post(imgbb, imageFile, {
+    const imgData = await axiosSecure.post(imgbb, imageFile, {
       headers: { "Content-Type": "multipart/form-data" },
     });
     const image = imgData.data.data.display_url;
@@ -30,12 +42,13 @@ const AddDoctor = () => {
     data.time = value;
     data.image = image;
     console.log(data);
-    const res = await axiosSecure.post("/doctors", data);
+    const res = await axiosSecure.put("/doctors", data);
 
-    if (res.data.insertedId) {
+    if (res.data.modifiedCount) {
+      refetch();
       Swal.fire({
         title: "Good job!",
-        text: "Added a appoinment list successfully!",
+        text: `update ${doctorName}'s appoinment list successfully!`,
         icon: "success",
       });
     }
@@ -44,9 +57,9 @@ const AddDoctor = () => {
   return (
     <section className="w-full max-w-5xl mx-auto">
       <Helmet>
-        <title>Add Doctor || Easy Doc</title>
+        <title>Update Doctor || Easy Doc</title>
       </Helmet>
-      <h2 className="text-4xl font-bold text-center">Add appoinments </h2>
+      <h2 className="text-4xl font-bold text-center">Update appoinments </h2>
       <div className="divider"></div>
       {/* Form Start */}
       <div>
@@ -61,6 +74,7 @@ const AddDoctor = () => {
             </div>
             <input
               {...register("doctorName")}
+              defaultValue={doctorName}
               type="text"
               placeholder="Doctor Name"
               className="input input-bordered w-full  focus:outline-none focus:border-blue-400"
@@ -73,6 +87,7 @@ const AddDoctor = () => {
             </div>
             <input
               {...register("specialization")}
+              defaultValue={specialization}
               type="text"
               placeholder="Specialization"
               className="input input-bordered w-full  focus:outline-none focus:border-blue-400"
@@ -127,6 +142,7 @@ const AddDoctor = () => {
               {...register("phone")}
               type="text"
               placeholder="Phone Number"
+              defaultValue={phone}
               className="input input-bordered w-full  focus:outline-none focus:border-blue-400"
             />
           </label>
@@ -137,6 +153,7 @@ const AddDoctor = () => {
             </div>
             <input
               {...register("email")}
+              defaultValue={email}
               type="text"
               placeholder="Email"
               className="input input-bordered w-full  focus:outline-none focus:border-blue-400"
@@ -148,7 +165,7 @@ const AddDoctor = () => {
               <span className="label-text">Date</span>
             </div>
             <DatePicker
-              selected={startDate}
+              selected={date}
               onChange={(date) => setStartDate(date)}
               className="input input-bordered w-full  focus:outline-none focus:border-blue-400"
             />
@@ -160,7 +177,7 @@ const AddDoctor = () => {
             </div>
             <TimePicker
               onChange={onChange}
-              value={value}
+              value={time}
               className="select input-bordered w-full  focus:outline-none focus:border-blue-400"
             />
           </label>
@@ -173,6 +190,7 @@ const AddDoctor = () => {
             <input
               {...register("location")}
               type="text"
+              defaultValue={location}
               placeholder="Location"
               className="input input-bordered w-full  focus:outline-none focus:border-blue-400"
             />
@@ -196,6 +214,7 @@ const AddDoctor = () => {
             <textarea
               {...register("details")}
               type="text"
+              defaultValue={details}
               placeholder="Details About Doctor"
               className="input input-bordered w-full  focus:outline-none focus:border-blue-400 h-48"
             />
@@ -209,4 +228,4 @@ const AddDoctor = () => {
   );
 };
 
-export default AddDoctor;
+export default UpdateDoctor;

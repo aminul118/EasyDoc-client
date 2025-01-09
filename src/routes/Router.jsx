@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
-
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import Home from "../pages/Home/Home/Home";
@@ -13,6 +12,8 @@ import AddDoctor from "../pages/Dashboard/AddDoctor/AddDoctor";
 import ManageDoctor from "../pages/Dashboard/ManageUsers/ManageUsers";
 import PrivateRoute from "./PrivateRoute";
 import Profile from "../pages/Dashboard/Profile/Profile";
+import AllDoctors from "../pages/Dashboard/AllDoctors/AllDoctors";
+import UpdateDoctor from "../pages/Dashboard/UpdateDoctor/UpdateDoctor";
 
 const Router = createBrowserRouter([
   {
@@ -66,9 +67,18 @@ const Router = createBrowserRouter([
         element: <Profile />,
       },
       {
+        path: "allDoctors",
+        element: <AllDoctors />,
+      },
+      {
         path: "addDoctor",
         element: <AddDoctor />,
       },
+      {
+        path: "updateDoctor/:id",
+        element: <UpdateDoctor />,
+      },
+
       {
         path: "manageDoctor",
         element: <ManageDoctor />,

@@ -125,11 +125,11 @@ const Register = () => {
             <button className="w-full bg-blue-600 text-white py-2 rounded-md mb-4 hover:bg-blue-700 btn">
               Register
             </button>
-
-            {/* Google Sign-In */}
-            <GoogleLogin />
           </form>
-
+          <div className="w-full max-w-md">
+            {/* Google Login */}
+            <GoogleLogin />
+          </div>
           {/* Login Link */}
           <p className="mt-4 text-gray-500 text-center">
             Already have an account?

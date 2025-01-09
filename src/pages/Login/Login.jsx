@@ -93,7 +93,7 @@ const Login = () => {
               Login
             </button>
           </form>
-          <div className="w-full">
+          <div className="w-full max-w-md">
             {/* Google Login */}
             <GoogleLogin />
           </div>

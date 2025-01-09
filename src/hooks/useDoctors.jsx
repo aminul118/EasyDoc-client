@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import useAxiosPublic from "./useAxiosPublic";
 
-const useDoctors = (sort, search) => {
+const useDoctors = (sort = "", search = "") => {
   const axiosPublic = useAxiosPublic();
   const {
     data: doctors = [],

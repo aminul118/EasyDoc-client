@@ -18,10 +18,6 @@ const Doctor = () => {
     setSearch(e.target.value);
   };
 
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
-
   return (
     <section>
       <Helmet>
@@ -29,35 +25,41 @@ const Doctor = () => {
       </Helmet>
 
       <Container>
-        <div className="py-12 flex gap-4 max-w-md mx-auto">
+        <div className="py-12 flex flex-col md:flex-row gap-4 items-center justify-center max-w-md mx-auto">
           {/* Sort Dropdown */}
           <select
             defaultValue={sort}
             onChange={handleSort}
-            className="select w-full border border-blue-500 focus:outline-none focus:border-blue-400"
+            className="select w-full h-12 md:w-auto border border-blue-500 rounded-md focus:outline-none focus:border-blue-400"
           >
             <option value="desc">Descending</option>
             <option value="asc">Ascending</option>
           </select>
 
           {/* Search Input */}
-          <div className="flex">
-            <input
-              type="text"
-              value={search}
-              onChange={handleSearch}
-              placeholder="Search"
-              className="px-10 py-2 border border-blue-500 rounded-md outline-none focus:ring-blue-500"
-            />
-          </div>
+          <input
+            type="text"
+            value={search}
+            onChange={handleSearch}
+            placeholder="Search"
+            className="px-4  w-full md:w-auto h-12 border border-blue-500 rounded-md outline-none focus:ring focus:ring-blue-300"
+          />
         </div>
 
         {/* Doctor Cards */}
-        <div className="grid lg:grid-cols-3 gap-6 2xl:grid-cols-6 py-12">
-          {doctors?.map((doctor) => (
-            <DoctorCard doctor={doctor} key={doctor._id} />
-          ))}
-        </div>
+        {isLoading ? (
+          <LoadingSpinner />
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-6 gap-6 md:py-12">
+            {doctors?.map((doctor) => (
+              <DoctorCard
+                doctor={doctor}
+                key={doctor._id}
+                className="h-full flex flex-col"
+              />
+            ))}
+          </div>
+        )}
       </Container>
     </section>
   );

@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import { useState } from "react";
+import dummyImg from "../../../assets/icons/emptyUser.png";
 
 const Profile = () => {
   const { user, updateUserProfile } = useAuth();
@@ -50,7 +51,7 @@ const Profile = () => {
       }
 
       // Simulate profile update API
-      console.log("Updating profile with:", { displayName, photoURL });
+      // console.log("Updating profile with:", { displayName, photoURL });
 
       Swal.fire({
         title: "Good job!",
@@ -77,7 +78,7 @@ const Profile = () => {
       <div className="flex flex-col items-center">
         <div className="w-32 h-32 rounded-full overflow-hidden border-2 border-blue-500 mb-4">
           <img
-            src={previewPhoto || "/default-avatar.png"}
+            src={previewPhoto || dummyImg}
             alt="User Avatar"
             className="w-full h-full object-cover"
           />
