@@ -43,7 +43,7 @@ const UpdateDoctor = () => {
     data.date = startDate;
     data.time = value;
     data.image = image;
-    console.log(data);
+    // console.log(data);
     const res = await axiosSecure.put(`/doctors/${id}`, data);
 
     if (res.data.modifiedCount) {

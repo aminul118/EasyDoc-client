@@ -5,23 +5,18 @@ const useDoctorId = (id) => {
   const axiosPublic = useAxiosPublic();
 
   const {
-    data: doctor = {}, // Default value to prevent errors if data is undefined
+    data: doctor = {},
     isLoading,
     error,
     refetch,
   } = useQuery({
-    queryKey: ["doctor", id], // Include id in the query key
+    queryKey: ["doctor", id],
     queryFn: async () => {
       if (!id) throw new Error("No ID provided");
-      try {
-        const res = await axiosPublic.get(`/doctors/${id}`);
-        return res.data;
-      } catch (error) {
-        console.error("Error fetching doctor data:", error);
-        throw error;
-      }
+      const res = await axiosPublic.get(`/doctors/${id}`);
+      return res.data;
     },
-    enabled: !!id, // Ensures the query doesn't run if the ID is falsy
+    enabled: !!id,
   });
 
   return { doctor, isLoading, error, refetch };

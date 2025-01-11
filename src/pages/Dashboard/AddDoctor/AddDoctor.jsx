@@ -29,7 +29,7 @@ const AddDoctor = () => {
     data.date = startDate;
     data.time = value;
     data.image = image;
-    console.log(data);
+    // console.log(data);
     const res = await axiosSecure.post("/doctors", data);
 
     if (res.data.insertedId) {

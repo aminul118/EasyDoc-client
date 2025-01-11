@@ -12,7 +12,7 @@ const Login = () => {
   const { login,  } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
   const {
     register,
     handleSubmit,
@@ -28,9 +28,7 @@ const Login = () => {
         reset();
         navigate(location.state ? location.state : "/");
       })
-      .catch((error) => {
-        console.log("ERROR:", error);
-      });
+     
   };
   return (
     <section className="min-h-[calc(100vh-288px)] flex justify-center items-center">

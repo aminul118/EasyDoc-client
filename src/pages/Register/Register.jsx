@@ -20,19 +20,14 @@ const Register = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     const { name, email, password } = data;
     const newUser = { name, email };
-    createUser(email, password)
-      .then(() => {
-        updateUserProfile(name);
-        axiosPublic.post("/users", newUser);
-        reset();
-        navigate("/login");
-      })
-      .catch((error) => {
-        console.log("ERROR:", error);
-      });
+    createUser(email, password).then(() => {
+      updateUserProfile(name);
+      axiosPublic.post("/users", newUser);
+      reset();
+      navigate("/login");
+    });
   };
   return (
     <section className="min-h-[calc(100vh-288px)] flex justify-center items-center">

@@ -9,7 +9,7 @@ const Appointments = () => {
   const axiosSecure = useAxiosSecure();
 
   // Log appointments for debugging
-  console.log(appointments);
+  // console.log(appointments);
 
   if (isLoading) return <LoadingSpinner />;
 

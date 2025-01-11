@@ -67,9 +67,7 @@ const DoctorDetails = () => {
         text: `Appointment booked for ${formData.patientName}`,
         icon: "success",
       });
-    } catch (error) {
-      console.error("Error booking appointment:", error);
-    }
+    } 
   };
 
   // Component Render

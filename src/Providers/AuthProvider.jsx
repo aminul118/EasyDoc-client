@@ -54,7 +54,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
-        console.log("Current User:", currentUser);
+        // console.log("Current User:", currentUser);
         setUser(currentUser);
         setLoading(false);
         const userInfo = { email: currentUser.email };
@@ -69,7 +69,7 @@ const AuthProvider = ({ children }) => {
         }
       } else {
         //
-        console.log("User signed out");
+        // console.log("User signed out");
         localStorage.removeItem("token");
         setUser(null);
         setLoading(false);
