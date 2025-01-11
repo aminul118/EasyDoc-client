@@ -58,16 +58,14 @@ const DoctorDetails = () => {
     formData.email = user.email;
     formData.doctorId = id;
 
-    try {
-      await axiosSecure.post("/appointments", formData);
-      reset();
-      refetch();
-      Swal.fire({
-        title: "Good job!",
-        text: `Appointment booked for ${formData.patientName}`,
-        icon: "success",
-      });
-    } 
+    await axiosSecure.post("/appointments", formData);
+    reset();
+    refetch();
+    Swal.fire({
+      title: "Good job!",
+      text: `Appointment booked for ${formData.patientName}`,
+      icon: "success",
+    });
   };
 
   // Component Render
