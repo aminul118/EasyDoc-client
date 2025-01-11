@@ -10,13 +10,15 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useDoctorId from "../../../hooks/useDoctorId";
 import { useParams } from "react-router-dom";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 const UpdateDoctor = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [value, onChange] = useState("12:00");
   const axiosSecure = useAxiosSecure();
+  const axiosPublic = useAxiosPublic();
   const { register, handleSubmit } = useForm();
   const { id } = useParams();
-  const { doctor, isLoading, error,refetch } = useDoctorId(id);
+  const { doctor, isLoading, error, refetch } = useDoctorId(id);
   const {
     doctorName,
     specialization,
@@ -34,7 +36,7 @@ const UpdateDoctor = () => {
 
   const onSubmit = async (data) => {
     const imageFile = { image: data.image[0] };
-    const imgData = await axiosSecure.post(imgbb, imageFile, {
+    const imgData = await axiosPublic.post(imgbb, imageFile, {
       headers: { "Content-Type": "multipart/form-data" },
     });
     const image = imgData.data.data.display_url;
@@ -42,7 +44,7 @@ const UpdateDoctor = () => {
     data.time = value;
     data.image = image;
     console.log(data);
-    const res = await axiosSecure.put("/doctors", data);
+    const res = await axiosSecure.put(`/doctors/${id}`, data);
 
     if (res.data.modifiedCount) {
       refetch();
