@@ -1,4 +1,6 @@
 # EasyDoc
+![Easy Doc](/src/assets/easy-doc.png)
+
 
 **EasyDoc** is a MERN (MongoDB, Express.js, React.js, Node.js) stack-based project designed to simplify doctor appointment bookings for users and provide efficient management tools for administrators.
 
